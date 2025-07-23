@@ -11,41 +11,37 @@ export class Timeline {
   percentage_string = signal('translateX(0%)')
   percentage_value = signal(0);
 
-  moveRight(event: MouseEvent) {
-    this.percentage_value.set(this.percentage_value() - this.moveAmountRight())
+  moveAlongSliderRight(event: MouseEvent) {
+    this.determineMoveAmountRight()
 
     this.percentage_string.set("translateX(" + this.percentage_value().toString() + "%)")
     console.log(this.percentage_string())
 
   }
 
-  moveLeft(event: MouseEvent) {
-    this.percentage_value.set(this.percentage_value() + this.moveAmountLeft())
+  moveAlongSliderLeft(event: MouseEvent) {
+    this.determineMoveAmountLeft()
 
     this.percentage_string.set("translateX(" + this.percentage_value().toString() + "%)")
     console.log(this.percentage_string())
   }
 
-  moveAmountRight() : number {
-    //Bruh this has to be overcomplicated.
-    //Suggestion - how about we calculate what is the max percentage instead. We know how many elements we have.
-    let move_percentage = 100;
-    let groups_passed = Math.floor(this.percentage_value() / 100)
-    let items_scrolled = ITEMS_DISPLAYED * groups_passed;
-    let items_remaining = ITEM_COUNT - items_scrolled;
-    if (items_remaining % ITEMS_DISPLAYED != 0) {
-      move_percentage = (items_remaining % ITEMS_DISPLAYED) / ITEMS_DISPLAYED * 100
-      console.log(move_percentage)
-      return move_percentage;
+  determineMoveAmountRight() {
+    let maxTransformXValue = (ITEM_COUNT / ITEMS_DISPLAYED * 100) // full length of slider
+
+    if (this.percentage_value() + 100 < maxTransformXValue) {
+      this.percentage_value.set(-maxTransformXValue + 100) //we want to display up to the final slider element
     } else {
-      return move_percentage;
+      this.percentage_value.set(this.percentage_value() - 100)
     }
+    
   }
 
-  moveAmountLeft() : number {
+  determineMoveAmountLeft() {
     if (this.percentage_value() < 100) {
-      return -this.percentage_value()
+      this.percentage_value.set(0)
+    } else {
+      this.percentage_value.set(this.percentage_value() + 100)
     }
-    return 100;
   }
 }
