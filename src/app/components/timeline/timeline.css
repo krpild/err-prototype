@@ -1,0 +1,27 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 100%;
+    transform: translateX(0%);
+    transition: 500ms ease-in-out;
+    
+}
+
+.slider > img {
+    max-width: 25%;
+    flex: 0 0 25%;
+    padding: .25rem;
+}
+
+.handler{
+    z-index: 10;
+}
