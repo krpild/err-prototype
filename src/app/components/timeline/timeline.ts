@@ -10,12 +10,13 @@ import { ITEM_COUNT, ITEMS_DISPLAYED } from '../../constants';
 export class Timeline {
   percentage_string = signal('translateX(0%)')
   percentage_value = signal(0);
+  sizePercentage = signal((1 / ITEMS_DISPLAYED * 100).toString() + "%")
   leftHandlerHidden = signal(true)
   rightHandlerHidden = signal(false)
 
   moveAlongSliderRight(event: MouseEvent) {
     this.determineMoveAmountRight()
-
+    console.log(this.sizePercentage())
     this.percentage_string.set("translateX(" + this.percentage_value().toString() + "%)")
     console.log(this.percentage_string())
 

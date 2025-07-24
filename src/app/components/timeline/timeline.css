@@ -16,9 +16,9 @@
     
 }
 
-.slider > img {
-    max-width: 25%;
-    flex: 0 0 25%;
+img {
+    max-width: 50%;
+    flex: 0 0 50%;
     padding: .25rem;
 }
 
