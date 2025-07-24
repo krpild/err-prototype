@@ -10,6 +10,8 @@ import { ITEM_COUNT, ITEMS_DISPLAYED } from '../../constants';
 export class Timeline {
   percentage_string = signal('translateX(0%)')
   percentage_value = signal(0);
+  leftHandlerHidden = signal(true)
+  rightHandlerHidden = signal(false)
 
   moveAlongSliderRight(event: MouseEvent) {
     this.determineMoveAmountRight()
@@ -27,21 +29,31 @@ export class Timeline {
   }
 
   determineMoveAmountRight() {
-    let maxTransformXValue = (ITEM_COUNT / ITEMS_DISPLAYED * 100) // full length of slider
+    let maxTransformXValue = -(ITEM_COUNT / ITEMS_DISPLAYED * 100) // full length of slider
+    console.log(maxTransformXValue)
+    console.log(this.percentage_value() - 100)
 
-    if (this.percentage_value() + 100 < maxTransformXValue) {
-      this.percentage_value.set(-maxTransformXValue + 100) //we want to display up to the final slider element
+    if (this.percentage_value() - 200 < maxTransformXValue) {
+      this.rightHandlerHidden.set(true)
+      this.percentage_value.set(maxTransformXValue + 100) //we want to display up to the final slider element
     } else {
+      this.leftHandlerHidden.set(false)
       this.percentage_value.set(this.percentage_value() - 100)
     }
     
   }
 
   determineMoveAmountLeft() {
-    if (this.percentage_value() < 100) {
+    if (this.percentage_value() > -100) {
+      this.leftHandlerHidden.set(true)
       this.percentage_value.set(0)
     } else {
+      this.rightHandlerHidden.set(false)
       this.percentage_value.set(this.percentage_value() + 100)
     }
+  }
+
+  isMaxPosition(){
+
   }
 }

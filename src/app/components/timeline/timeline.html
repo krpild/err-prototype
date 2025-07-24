@@ -1,13 +1,19 @@
 <div class="container">
-    <div class="handler left" (click)="moveAlongSliderLeft($event)">Left</div>
+    <div class="handler left" (click)="moveAlongSliderLeft($event)" [class.hidden]="leftHandlerHidden()">⮜</div>
     <div class="slider" [style.transform]="percentage_string()">
         <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
         <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
         <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
         <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
         <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
+        <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
+        <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
+        <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
+        <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
+        <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
+        <img src="https://s.err.ee/photo/crop/2025/07/01/2916708hba06.png">
     </div>
-    <div class="handler right" (click)="moveAlongSliderRight($event)">Right</div>
+    <div class="handler right" (click)="moveAlongSliderRight($event)" [class.hidden]="rightHandlerHidden()">⮞</div>
 </div>
 
 
