@@ -34,7 +34,7 @@ export class Timeline {
     console.log(maxTransformXValue)
     console.log(this.percentage_value() - 100)
 
-    if (this.percentage_value() - 200 < maxTransformXValue) {
+    if (this.percentage_value() - 200 <= maxTransformXValue) {
       this.rightHandlerHidden.set(true)
       this.percentage_value.set(maxTransformXValue + 100) //we want to display up to the final slider element
     } else {
@@ -45,7 +45,7 @@ export class Timeline {
   }
 
   determineMoveAmountLeft() {
-    if (this.percentage_value() > -100) {
+    if (this.percentage_value() >= -100) {
       this.leftHandlerHidden.set(true)
       this.percentage_value.set(0)
     } else {
